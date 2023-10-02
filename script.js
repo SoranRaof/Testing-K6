@@ -33,17 +33,17 @@ import { sleep, check } from "k6";
 // in the first stage we ramp up the numbers of VUs to 20 over a period of 10 seconds
 // in the second stage we ramp down the number of VUs to 10 over a period of 20 seconds
 // in the third stage we ramp down the number of VUs to 0 over a period of 10 seconds
-// export const options = {
-//   stages: [
-//     { duration: "10s", target: 20 },
-//     { duration: "20s", target: 10 },
-//     { duration: "10s", target: 0 },
-//   ],
-// };
+export const options = {
+  stages: [
+    { duration: "10s", target: 20 },
+    { duration: "20s", target: 10 },
+    { duration: "10s", target: 0 },
+  ],
+};
 
-// // check is a built-in function that verifies that the response code is 200
-// export default function () {
-//   const res = http.get("http://test.k6.io");
-//   check(res, { "status was 200": (r) => r.status == 200 });
-//   sleep(10);
-// }
+// check is a built-in function that verifies that the response code is 200
+export default function () {
+  const res = http.get("http://test.k6.io");
+  check(res, { "status was 200": (r) => r.status == 200 });
+  sleep(10);
+}
